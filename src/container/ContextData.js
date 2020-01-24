@@ -15,8 +15,8 @@ const ContextData = (props) =>{
     return(
         <div>
             <GameArea>
-                <Keywords word={props.word} unGuessedWord={props.unguessedWord} />
-                <Hangman />
+                <Keywords word={props.word} unGuessedWord={props.unguessedWord}/>
+                <Hangman count={props.count}/>
             </GameArea>
             <Keyboard guess={props.guess}/>
         </div>

@@ -44,9 +44,8 @@ const Header = () => {
     return (
         <HeaderContainer>
             <GameName>HANGMAN</GameName>
-            <NewGame>New Game</NewGame>
+            <NewGame >New Game</NewGame>
         </HeaderContainer>
-        
     )
 }
 

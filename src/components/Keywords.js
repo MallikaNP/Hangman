@@ -17,6 +17,7 @@ const Word = styled.div`
 `
 
 
+
 const Keywords = (props) => {
     return(
     <Word>{props.unGuessedWord}</Word>

@@ -21,7 +21,7 @@ const Rope= styled.div`
     display: block;
 `
 
-const Head = styled.div`
+let Head = styled.div`
     width:60px;
     height:60px;
     margin-left:60px;
@@ -29,7 +29,7 @@ const Head = styled.div`
     border:1px solid black;
     display:none;
 `
-const LeftArm = styled.div`
+let LeftArm = styled.div`
     width:33%;
     height:60px;
     margin-left:34px;
@@ -38,14 +38,14 @@ const LeftArm = styled.div`
     display: none;
 `
 
-const Chest = styled.div`
+let Chest = styled.div`
     width:1px;
     border-left:1px solid black;
     height:80px;
     float:left;
     display: none;
 `
-const Legs = styled.div`
+let Legs = styled.div`
     border-left:1px solid black;
     border-right:1px solid black;
     border-top:1px solid black;
@@ -55,15 +55,45 @@ const Legs = styled.div`
     display: none;
 `
 
-const RightArm = styled(LeftArm)`
+let RightArm = styled(LeftArm)`
     margin-left:0px;
 `
 
-const updateImage = () =>{
+const createHangman= (count) => {
 
+    switch(count){
+        case 1:
+            Head = styled(Head)`
+                display:block;
+            `
+            break;
+        case 2:
+            LeftArm = styled(LeftArm)`
+                display:block;
+            `
+            break;
+        case 3:
+            RightArm = styled(RightArm)`
+                display:block;
+            `
+            break;
+        case 4:
+            Chest = styled(Chest)`
+                display:block;
+            `
+            break;
+        case 5:
+            Legs = styled(Legs)`
+                display:block;
+            `
+            break;
+        default:
+             break
+    }
 }
 
-const Hangman = () => {
+const Hangman = (props) => {
+    createHangman(props.count)
     return(
         <HangImage>
             <PartsContainer>

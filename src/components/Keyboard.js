@@ -33,14 +33,17 @@ const KeyDiv = styled.div`
 const SDiv = styled(KeyDiv)`
     margin-left:50px;
 `
+// const disableDiv = (event) => {
+//     event.target.Disabled
+// }
 
 const rows = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 
 const keyboardGenerator = (guess) => {
     return rows.map(
-        element => element==='S' ? 
-            <SDiv key={element} onClick={() => {guess(element)}} value={element}>{element}</SDiv> : 
-            <KeyDiv key={element} onClick={() => {guess(element)}} value={element}>{element}</KeyDiv>)
+        (element, ind) => element==='S' ? 
+            <SDiv key={ind} onClick={() => {guess(element, ind)}} value={element}>{element}</SDiv> : 
+            <KeyDiv key={ind} onClick={() => {guess(element, ind)}} value={element}>{element}</KeyDiv>)
 }
 
 const Keyboard = (props) => {
