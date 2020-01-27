@@ -10,6 +10,12 @@ const KeyboardContainer = styled.div`
     align-content: center;
     padding: 20px 20px;
     margin-left: 25%;
+    margin-top:20px;
+    @media (max-width: 550px) {
+        width:80%;
+        margin-left: 50px;
+        padding: 5px 5px;
+      }
 `
 
 const KeyDiv = styled.div`
@@ -28,6 +34,13 @@ const KeyDiv = styled.div`
         background-color: #002AFF;
         color : #80D4FF;
     }
+    @media (max-width: 550px) {
+        height: 30px;
+        width: 30px;
+        font-size: 12px;
+        margin: 1px 1px 1px 1px;
+        padding-top:5px;
+      }
 `
 
 const SDiv = styled(KeyDiv)`

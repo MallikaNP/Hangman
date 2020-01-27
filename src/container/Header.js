@@ -3,27 +3,33 @@ import styled from 'styled-components'
 
 const HeaderContainer = styled.div`
     width:45%;
-    font-family: Didot;
-    font-size: 50px;
     margin-left: 26%;
     margin-top: 25px;
     color: #002AFF;
-    overflow:hidden;
+    display:flex;
+    flex-flow:row;
+    @media (max-width: 550px){
+        width:80%;
+        margin:top:12px;
+    }
 `
 const GameName = styled.div`
-    width:30%;
+    width:40%;
     text-align:left;
     font-family: Didot;
     font-size: 50px;
-    float:left;
     color: #002AFF;
     margin-top:40px;
     margin-left:50px;
+    @media (max-width: 550px){
+       font-size:25px;
+       margin:top:20px;
+       margin-left:25px;
+    }
 `
 
 const NewGame = styled.div`
     width:20%;
-    float:right;
     border-radius: 5px;
     padding: 20px 20px;
     text-align:center;
@@ -38,13 +44,22 @@ const NewGame = styled.div`
         background-color: #002AFF;
         color : #80D4FF;
     }
+    pointer: cursor;
+    @media (max-width: 550px){
+        padding:10px 10px;
+        font-size:12px;
+        margin-top:12px;
+        margin-bottom : 15px;
+    }
 `
 
-const Header = () => {
+const Header = (props) => {
+    let gameName = props.count<5 ? "HANGMAN" : "YOU LOSE!"
+    
     return (
         <HeaderContainer>
-            <GameName>HANGMAN</GameName>
-            <NewGame >New Game</NewGame>
+            <GameName>{gameName}</GameName>
+            <NewGame onClick={props.newGame}>New Game</NewGame>
         </HeaderContainer>
     )
 }

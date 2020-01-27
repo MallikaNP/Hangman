@@ -13,55 +13,59 @@ const Game = styled.div`
 class App extends Component {
 
   keywords = ['MALLIKA', 'SIDDHANT', 'DEVANG', 'ARAVIND', 'VINAY', 'REHAAN', 'DHANANJAY', 'ASHUTOSH', 'MUGDHA']
-  wordIndex = Math.floor(Math.random() * 9)
-  word = this.keywords[this.wordIndex];
+  
 
   constructor(props) {
     super(props);
+    const wordIndex = Math.floor(Math.random() * 9)
+    const word = this.keywords[wordIndex];
+    
     this.state = {
-      word: this.word,
-      unguessedWord: '-'.repeat(this.word.length),
+      word: word,
+      unguessedWord: '-'.repeat(word.length),
       numberOfGuesses: 0,
-      display: new Array(26).fill('true')
+      display: new Array(26).fill(true),
+      reset : true,
+      
     }
   }
 
 
+  showAnswer = () => {
+    if(this.state.numberOfGuesses===4){
+      this.setState({
+        unguessedWord : this.state.word
+      })
+      console.log(this.state.unguessedWord)
+    }
+  }
+
   newGame = () => {
-    this.setState((state) => {
-      return {
-        ...state,
-        word: this.word,
-        unguessedWord: '-'.repeat(this.word.length),
-        numberOfGuesses: 0,
-        display: this.state.display.map(ele => true)
-      };
+    const wordIndex = Math.floor(Math.random() * 9)
+    const word = this.keywords[wordIndex];
+    this.setState({
+      word: word,
+      unguessedWord: '-'.repeat(word.length),
+      numberOfGuesses: 0,
+      display: new Array(26).fill(true),
+      reset:true
     });
+    //console.log(this.state.display)
   }
 
   incrementGuess = () => {
-    const noOfGuesses = this.state.numberOfGuesses + 1
-    
-    this.setState((state) => {
-      return {
-        ...state,
-        numberOfGuesses: noOfGuesses
-      }
+
+    let noOfGuesses = this.state.numberOfGuesses
+    noOfGuesses++;
+    this.setState({
+
+      numberOfGuesses: noOfGuesses
+
     });
-    console.log(this.state.numberOfGuesses)
-    if(noOfGuesses === 5)
-    {
-      
-      alert('You lose!')
-      this.newGame()
-    } 
- }
-
-  componentDidUpdate = () => {
-
   }
 
   guess = (alphabet, letterIndex) => {
+    this.showAnswer()
     let word = this.state.word
     if (this.state.display[letterIndex]) {
       console.log(this.state.display)
@@ -93,17 +97,20 @@ class App extends Component {
       this.setState((state) => {
         return {
           ...state,
-          display: this.state.display.map((ele, ind) => ind === letterIndex ? false : ele)
+          display: this.state.display.map((ele, ind) => ind === letterIndex ? false : ele),
+          reset:false,
         };
       });
     }
   }
-  
+
   render() {
     return (
       <Game>
-        <Header/>
-        <ContextData word={this.state.word} unguessedWord={this.state.unguessedWord} count={this.state.numberOfGuesses} guess={this.guess} />
+        <Header newGame={this.newGame} count={this.state.numberOfGuesses} />
+        <ContextData word={this.state.word} unguessedWord={this.state.unguessedWord} 
+                     count={this.state.numberOfGuesses} guess={this.guess}
+                     reset={this.state.reset}/>
       </Game>
     )
   }
